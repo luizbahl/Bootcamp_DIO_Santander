@@ -10,7 +10,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-          primarySwatch: Colors.red,
+          primarySwatch: Colors.blueGrey,
           textTheme: GoogleFonts.mansalvaTextTheme()),
       home: const LoginPage(),
     );
