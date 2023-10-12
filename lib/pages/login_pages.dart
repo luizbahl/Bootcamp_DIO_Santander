@@ -12,8 +12,6 @@ class _LoginPageState extends State<LoginPage> {
   var senhaController = TextEditingController();
   bool isObscureText = true;
 
-
-  
   @override
   Widget build(BuildContext context) {
     return SafeArea(
