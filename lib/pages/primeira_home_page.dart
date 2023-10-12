@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:trilhaapp/service/gerar_numero_aleatorio.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+class PrimeiraHomePage extends StatefulWidget {
+  const PrimeiraHomePage({super.key});
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<PrimeiraHomePage> createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _HomePageState extends State<PrimeiraHomePage> {
   var numeroGerado = 0;
   var quantidadeDeClicks = 0;
 
