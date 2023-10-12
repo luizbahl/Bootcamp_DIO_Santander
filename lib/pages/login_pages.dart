@@ -99,10 +99,25 @@ class _LoginPageState extends State<LoginPage> {
               Container(
                 width: double.infinity,
                 margin: const EdgeInsets.symmetric(horizontal: 30),
-                color: Colors.green,
-                height: 30,
                 alignment: Alignment.center,
-                child: const Text("Login"),
+                child: SizedBox(
+                  width: double.infinity,
+                  child: TextButton(
+                      onPressed: () {},
+                      style: ButtonStyle(
+                          shape: MaterialStateProperty.all(
+                              RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(12))),
+                          backgroundColor:
+                              MaterialStateProperty.all(Colors.purpleAccent)),
+                      child: const Text(
+                        "ENTRAR",
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 16,
+                            fontWeight: FontWeight.w500),
+                      )),
+                ),
               ),
               Expanded(child: Container()),
               Container(
