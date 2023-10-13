@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:trilhaapp/pages/repositories/nivel_repository.dart';
 import 'package:trilhaapp/pages/shared/widgets/text_label.dart';
 
 class DadosCadastraisPage extends StatefulWidget {
@@ -12,6 +13,15 @@ class _DadosCadastraisPageState extends State<DadosCadastraisPage> {
   var nomeController = TextEditingController(text: "");
   var dataNascimentoController = TextEditingController(text: "");
   DateTime? dataNascimento;
+  var nivelRepository = NivelRepository();
+  var niveis = [];
+  var nivelSelecionado = "";
+
+  @override
+  void initState() {
+    niveis = nivelRepository.retornaNiveis();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -25,9 +35,6 @@ class _DadosCadastraisPageState extends State<DadosCadastraisPage> {
             const TextLabel(texto: "Nome"),
             TextField(
               controller: nomeController,
-            ),
-            const SizedBox(
-              height: 10,
             ),
             const TextLabel(texto: "Data de nascimento"),
             TextField(
@@ -45,10 +52,27 @@ class _DadosCadastraisPageState extends State<DadosCadastraisPage> {
                 }
               },
             ),
+            const TextLabel(texto: "Nivel de Experiência"),
+            Column(
+              children: niveis
+                  .map((nivel) => RadioListTile(
+                      dense: true,
+                      title: Text(nivel),
+                      selected: nivelSelecionado == nivel,
+                      value: nivel,
+                      groupValue: nivelSelecionado,
+                      onChanged: (value) {
+                        debugPrint(value.toString());
+                        setState(() {
+                          nivelSelecionado = value;
+                        });
+                      }))
+                  .toList(),
+            ),
             TextButton(
                 onPressed: () {
                   debugPrint(nomeController.text);
-                  print(dataNascimento);
+                  debugPrint(dataNascimento.toString());
                 },
                 child: const Text("Salvar"))
           ],
