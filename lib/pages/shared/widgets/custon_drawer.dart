@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:trilhaapp/pages/dados_cadastrais.dart';
+import 'package:trilhaapp/pages/login_pages.dart';
 
 class CustonDrawer extends StatelessWidget {
   const CustonDrawer({super.key});
@@ -137,7 +138,77 @@ class CustonDrawer extends StatelessWidget {
                   });
             },
           ),
-          const Divider()
+          const Divider(),
+          const SizedBox(
+            height: 10,
+          ),
+          InkWell(
+            child: Container(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                width: double.infinity,
+                child: const Row(
+                  children: [
+                    Icon(Icons.exit_to_app),
+                    SizedBox(
+                      width: 5,
+                    ),
+                    Text("Sair"),
+                  ],
+                )),
+            onTap: () {
+              showDialog(
+                  context: context,
+                  builder: (BuildContext bc) {
+                    return AlertDialog(
+                      alignment: Alignment.centerRight,
+                      elevation: 8,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10)),
+                      title: const Text(
+                        "Meu App",
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                      content: const Wrap(
+                        children: [
+                          Text(
+                            "Voçê sairá do aplicativo!",
+                            style: TextStyle(fontSize: 18),
+                          ),
+                          SizedBox(
+                            height: 25,
+                          ),
+                          Text(
+                            "Deseja realmente sair do aplicativo?",
+                            style: TextStyle(fontSize: 18),
+                          ),
+                        ],
+                      ),
+                      actions: [
+                        TextButton(
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
+                            child: const Text("Não.",
+                                style: TextStyle(
+                                  color: Color.fromARGB(255, 23, 131, 27),
+                                ))),
+                        TextButton(
+                            onPressed: () {
+                              Navigator.pushReplacement(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => const LoginPage()));
+                            },
+                            child: const Text("Sim.",
+                                style: TextStyle(
+                                  color: Color.fromARGB(255, 23, 131, 27),
+                                ))),
+                      ],
+                    );
+                  });
+            },
+          ),
         ],
       ),
     );
