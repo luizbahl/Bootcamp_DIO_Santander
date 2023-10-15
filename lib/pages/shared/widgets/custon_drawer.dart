@@ -10,15 +10,43 @@ class CustonDrawer extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          UserAccountsDrawerHeader(
-              decoration: const BoxDecoration(color: Colors.black),
-              currentAccountPicture: CircleAvatar(
-                backgroundColor: Colors.white,
-                child: Image.network(
-                    "https://hermes.digitalinnovation.one/assets/diome/logo.png"),
-              ),
-              accountName: const Text("Luiz Bahl"),
-              accountEmail: const Text("email@email.com")),
+          InkWell(
+            onTap: () {
+              showModalBottomSheet(
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15)),
+                  context: context,
+                  builder: (BuildContext bc) {
+                    return Wrap(
+                      children: [
+                        ListTile(
+                          onTap: () {
+                            Navigator.pop(context);
+                          },
+                          title: const Text("Camera"),
+                          leading: const Icon(Icons.camera_enhance),
+                        ),
+                        ListTile(
+                          onTap: () {
+                            Navigator.pop(context);
+                          },
+                          title: const Text("Galeria"),
+                          leading: const Icon(Icons.archive),
+                        )
+                      ],
+                    );
+                  });
+            },
+            child: UserAccountsDrawerHeader(
+                decoration: const BoxDecoration(color: Colors.black),
+                currentAccountPicture: CircleAvatar(
+                  backgroundColor: Colors.white,
+                  child: Image.network(
+                      "https://hermes.digitalinnovation.one/assets/diome/logo.png"),
+                ),
+                accountName: const Text("Luiz Bahl"),
+                accountEmail: const Text("email@email.com")),
+          ),
           InkWell(
             child: Container(
                 padding:
@@ -79,7 +107,35 @@ class CustonDrawer extends StatelessWidget {
                     Text("Termos de uso e Privacidade"),
                   ],
                 )),
-            onTap: () {},
+            onTap: () {
+              showModalBottomSheet(
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15)),
+                  context: context,
+                  builder: (BuildContext bc) {
+                    return Container(
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 16, horizontal: 18),
+                        child: const Column(
+                          children: [
+                            Text(
+                              "Termos de uso e Privacidade",
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                  fontSize: 25, fontWeight: FontWeight.w600),
+                            ),
+                            SizedBox(
+                              height: 20,
+                            ),
+                            Text(
+                              "O incentivo ao avanço tecnológico, assim como a revolução dos costumes prepara-nos para enfrentar situações atípicas decorrentes do sistema de participação geral.",
+                              textAlign: TextAlign.center,
+                              style: TextStyle(fontSize: 18),
+                            ),
+                          ],
+                        ));
+                  });
+            },
           ),
           const Divider()
         ],
