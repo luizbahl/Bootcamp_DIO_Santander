@@ -2,8 +2,7 @@ import 'package:trilhaapp/model/card_detail.dart';
 
 class CardDetailRepsitory {
   Future<CardDetail> get() async {
-    Future.delayed;
-    //(const Duration(seconds: 3));
+    await Future.delayed(const Duration(seconds: 2));
     return CardDetail(
         1,
         "Meu Card",
