@@ -71,12 +71,12 @@ class _TarefaPageState extends State<TarefaPage> {
         child: Column(
           children: [
             Container(
-              margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+              margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   const Text(
-                    "Apenas não concluidos",
+                    "Apenas não concluídos",
                     style: TextStyle(fontSize: 18),
                   ),
                   Switch(
@@ -95,19 +95,18 @@ class _TarefaPageState extends State<TarefaPage> {
                     var tarefa = _tarefas[index];
                     return Dismissible(
                       onDismissed: (DismissDirection dismissDirection) async {
-                        await tarefaRepository.remove(tarefa.getId());
+                        await tarefaRepository.remove(tarefa.id);
                         obterTarefas();
                       },
-                      key: Key(tarefa.getId()),
+                      key: Key(tarefa.id),
                       child: ListTile(
-                        title: Text(tarefa.getDescricao()),
+                        title: Text(tarefa.descricao),
                         trailing: Switch(
                           onChanged: (bool value) async {
-                            await tarefaRepository.alterar(
-                                tarefa.getId(), value);
+                            await tarefaRepository.alterar( tarefa.id, value);
                             obterTarefas();
                           },
-                          value: tarefa.getConcluido(),
+                          value: tarefa.concluido,
                         ),
                       ),
                     );
