@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:trilhaapp/pages/configuracao_page.dart';
 import 'package:trilhaapp/pages/dados_cadastrais.dart';
 import 'package:trilhaapp/pages/login_pages.dart';
 import 'package:trilhaapp/pages/numeros_aleatorios_page.dart';
@@ -114,7 +115,13 @@ class CustonDrawer extends StatelessWidget {
                     Text("Configurações"),
                   ],
                 )),
-            onTap: () {},
+            onTap: () {
+              Navigator.pop(context);
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const ConfiguracoesPage()));
+            },
           ),
           const Divider(),
           const SizedBox(

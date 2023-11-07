@@ -3,7 +3,7 @@ import 'package:trilhaapp/model/tarefa.dart';
 import 'package:trilhaapp/pages/repositories/tarefa_reposytory.dart';
 
 class TarefaPage extends StatefulWidget {
-  const TarefaPage({super.key});
+  const TarefaPage({Key? key}) : super(key: key);
 
   @override
   State<TarefaPage> createState() => _TarefaPageState();
@@ -26,8 +26,8 @@ class _TarefaPageState extends State<TarefaPage> {
       _tarefas = await tarefaRepository.listarNaoConcluidas();
     } else {
       _tarefas = await tarefaRepository.listar();
-      setState(() {});
     }
+    setState(() {});
   }
 
   @override
@@ -103,7 +103,7 @@ class _TarefaPageState extends State<TarefaPage> {
                         title: Text(tarefa.descricao),
                         trailing: Switch(
                           onChanged: (bool value) async {
-                            await tarefaRepository.alterar( tarefa.id, value);
+                            await tarefaRepository.alterar(tarefa.id, value);
                             obterTarefas();
                           },
                           value: tarefa.concluido,
