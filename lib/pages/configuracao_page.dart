@@ -86,19 +86,18 @@ class _ConfiguracoesPageState extends State<ConfiguracoesPage> {
                 }),
             TextButton(
                 onPressed: () async {
-                  await storage.setString(
-                      chaveNomeUsuario, nomeUsuarioController.text);
+                  FocusManager.instance.primaryFocus?.unfocus();
                   try {
-                    await storage.setDouble(chaveAltura,
-                        double.tryParse(alturaController.text) ?? 0);
+                    await storage.setDouble(
+                        chaveAltura, double.parse(alturaController.text));
                   } catch (e) {
-                    showDialog(
+                      showDialog(
                         context: context,
                         builder: (_) {
                           return AlertDialog(
                             title: const Text("Meu App"),
                             content:
-                                const Text("Favor informar uma altura valida!"),
+                                const Text("Favor informar uma altura válida!"),
                             actions: [
                               TextButton(
                                   onPressed: () {
@@ -110,7 +109,8 @@ class _ConfiguracoesPageState extends State<ConfiguracoesPage> {
                         });
                     return;
                   }
-
+                  await storage.setString(
+                      chaveNomeUsuario, nomeUsuarioController.text);
                   await storage.setBool(
                       chaveReceberNotificacoes, receberNotificacao);
                   await storage.setBool(chaveTemaEscuro, temaEscuro);
