@@ -6,20 +6,78 @@ enum StorageChaves {
   chaveDadosCadastraisNivelExperiencia,
   chaveDadosCadastraisLinguagens,
   chaveDadosCadastraisTempoExperiencia,
-  chaveDadosCadastraisSalario
+  chaveDadosCadastraisSalario,
+  chaveNomeUsuario,
+  chaveAltura,
+  chaveReceberNotificacoes,
+  chaveTemaEscuro,
+  chaveNumeroAleatorio,
+  chaveQuantidadesClicks
 }
 
 class AppStorageService {
-  void setDadosCadastraisNome(String nome) async {
-    _setString(StorageChaves.chaveDadosCadastraisNome.toString(), nome);
+  // Page numeros_aleatorios
+  Future<void> setNumeroAleatorio(int value) async {
+    await _setInt(StorageChaves.chaveNumeroAleatorio.toString(), value);
   }
 
-  Future<String> getDadoscadastraisNome() async {
+  Future<int> getNumeroAleatorio() async {
+    return _getInt(StorageChaves.chaveNumeroAleatorio.toString());
+  }
+
+  Future<void> setQuantidadesClicks(int value) async {
+    await _setInt(StorageChaves.chaveQuantidadesClicks.toString(), value);
+  }
+
+  Future<int> getQuantidadesClicks() async {
+    return _getInt(StorageChaves.chaveQuantidadesClicks.toString());
+  }
+
+  // Page Configuração
+  Future<void> setConfiguracoesNomeUsuario(String nome) async {
+    await _setString(StorageChaves.chaveNomeUsuario.toString(), nome);
+  }
+
+  Future<String> getConfiguracoesNomeUsuario() async {
+    return _getString(StorageChaves.chaveNomeUsuario.toString());
+  }
+
+  Future<void> setConfiguracoesAltura(double value) async {
+    await _setDouble(StorageChaves.chaveAltura.toString(), value);
+  }
+
+  Future<double> getConfiguracoesAltura() async {
+    return _getDouble(StorageChaves.chaveAltura.toString());
+  }
+
+  Future<void> setConfiguracoesReceberNotificacoes(bool value) async {
+    await _setBool(StorageChaves.chaveReceberNotificacoes.toString(), value);
+  }
+
+  Future<bool> getConfiguracoesReceberNotificacoes() async {
+    return _getBool(StorageChaves.chaveReceberNotificacoes.toString());
+  }
+
+  Future<void> setConfiguracoesTemaEscuro(bool value) async {
+    await _setBool(StorageChaves.chaveTemaEscuro.toString(), value);
+  }
+
+  Future<bool> getConfiguracoesTemaEscuro() async {
+    return _getBool(StorageChaves.chaveTemaEscuro.toString());
+  }
+
+  // Page Dados Cadastrais
+  Future<void> setDadosCadastraisNome(String nome) async {
+    await _setString(StorageChaves.chaveDadosCadastraisNome.toString(), nome);
+  }
+
+  Future<String> getDadosCadastraisNome() async {
     return _getString(StorageChaves.chaveDadosCadastraisNome.toString());
   }
 
-  void setDadosCadastraisDataNascimento(DateTime data) async {
-    _setString(StorageChaves.chaveDadosCadastraisDataNascimento.toString(),
+  Future<void> setDadosCadastraisDataNascimento(DateTime data) async {
+    await _setString(
+        StorageChaves.chaveDadosCadastraisDataNascimento.toString(),
         data.toString());
   }
 
@@ -28,9 +86,9 @@ class AppStorageService {
         StorageChaves.chaveDadosCadastraisDataNascimento.toString());
   }
 
-  void setDadosCadastraisNivelExperiencia(String data) async {
-    _setString(StorageChaves.chaveDadosCadastraisNivelExperiencia.toString(),
-        data.toString());
+  Future<void> setDadosCadastraisNivelExperiencia(String value) async {
+    await _setString(
+        StorageChaves.chaveDadosCadastraisNivelExperiencia.toString(), value);
   }
 
   Future<String> getDadoscadastraisNivelExperiencia() async {
@@ -38,8 +96,8 @@ class AppStorageService {
         StorageChaves.chaveDadosCadastraisNivelExperiencia.toString());
   }
 
-  void setDadosCadastraisLinguagens(List<String> values) async {
-    _setStringList(
+  Future<void> setDadosCadastraisLinguagens(List<String> values) async {
+    await _setStringList(
         StorageChaves.chaveDadosCadastraisLinguagens.toString(), values);
   }
 
@@ -48,8 +106,8 @@ class AppStorageService {
         StorageChaves.chaveDadosCadastraisLinguagens.toString());
   }
 
-  void setDadosCadastraisTempoExperiencia(int value) async {
-    _setInt(
+  Future<void> setDadosCadastraisTempoExperiencia(int value) async {
+    await _setInt(
         StorageChaves.chaveDadosCadastraisTempoExperiencia.toString(), value);
   }
 
@@ -58,19 +116,30 @@ class AppStorageService {
         StorageChaves.chaveDadosCadastraisTempoExperiencia.toString());
   }
 
-  void setDadosCadastraisSalario(double value) async {
-    _setDouble(StorageChaves.chaveDadosCadastraisSalario.toString(), value);
+  Future<void> setDadosCadastraisSalario(double value) async {
+    await _setDouble(
+        StorageChaves.chaveDadosCadastraisSalario.toString(), value);
   }
 
   Future<double> getDadoscadastraisSalario() async {
     return _getDouble(StorageChaves.chaveDadosCadastraisSalario.toString());
   }
 
+  Future<void> _setBool(String chave, bool value) async {
+    var storage = await SharedPreferences.getInstance();
+    await storage.setBool(chave, value);
+  }
+
+  Future<bool> _getBool(String chave) async {
+    var storage = await SharedPreferences.getInstance();
+    return storage.getBool(chave) ?? false;
+  }
+
   // Wraps
 
-  _setString(String chave, String value) async {
+  Future<void> _setString(String chave, String value) async {
     var storage = await SharedPreferences.getInstance();
-    storage.setString(chave, value);
+    await storage.setString(chave, value);
   }
 
   Future<String> _getString(String chave) async {
@@ -78,9 +147,9 @@ class AppStorageService {
     return storage.getString(chave) ?? "";
   }
 
-  _setInt(String chave, int value) async {
+  Future<void> _setInt(String chave, int value) async {
     var storage = await SharedPreferences.getInstance();
-    storage.setInt(chave, value);
+    await storage.setInt(chave, value);
   }
 
   Future<int> _getInt(String chave) async {
@@ -88,9 +157,9 @@ class AppStorageService {
     return storage.getInt(chave) ?? 0;
   }
 
-  _setStringList(String chave, List<String> values) async {
+  Future<void> _setStringList(String chave, List<String> values) async {
     var storage = await SharedPreferences.getInstance();
-    storage.setStringList(chave, values);
+    await storage.setStringList(chave, values);
   }
 
   Future<List<String>> _getStringList(String chave) async {
@@ -98,23 +167,13 @@ class AppStorageService {
     return storage.getStringList(chave) ?? [];
   }
 
-  _setDouble(String chave, double value) async {
+  Future<void> _setDouble(String chave, double value) async {
     var storage = await SharedPreferences.getInstance();
-    storage.setDouble(chave, value);
+    await storage.setDouble(chave, value);
   }
 
   Future<double> _getDouble(String chave) async {
     var storage = await SharedPreferences.getInstance();
     return storage.getDouble(chave) ?? 0;
-  }
-
-  _setBool(String chave, bool value) async {
-    var storage = await SharedPreferences.getInstance();
-    storage.setBool(chave, value);
-  }
-
-  Future<bool> _getBool(String chave) async {
-    var storage = await SharedPreferences.getInstance();
-    return storage.getBool(chave) ?? false;
   }
 }

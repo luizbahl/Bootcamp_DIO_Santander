@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:trilhaapp/pages/repositories/linguagens_repository.dart';
 import 'package:trilhaapp/pages/repositories/nivel_repository.dart';
 import 'package:trilhaapp/pages/shared/widgets/text_label.dart';
+import 'package:trilhaapp/service/app_storage.dart';
 
 class DadosCadastraisPage extends StatefulWidget {
   const DadosCadastraisPage({Key? key}) : super(key: key);
@@ -20,11 +20,11 @@ class _DadosCadastraisPageState extends State<DadosCadastraisPage> {
   var niveis = [];
   var linguagens = [];
   var nivelSelecionado = "";
-  var linguagensSelecionadas = [];
+  List<String> linguagensSelecionadas = [];
   double salarioEscolhido = 0;
   int tempoExperiencia = 0;
 
-  late SharedPreferences storage;
+  AppStorageService storage = AppStorageService();
   final String chaveDadosCadastraisNome = "chaveDadosCadastraisNome";
   final String chaveDadosCadastraisDataNascimento =
       "chaveDadosCadastraisDataNascimento";
@@ -47,18 +47,16 @@ class _DadosCadastraisPageState extends State<DadosCadastraisPage> {
   }
 
   carregarDados() async {
-    storage = await SharedPreferences.getInstance();
-    nomeController.text = storage.getString(chaveDadosCadastraisNome) ?? "";
+    nomeController.text = await storage.getDadosCadastraisNome();
     dataNascimentoController.text =
-        storage.getString(chaveDadosCadastraisDataNascimento) ?? "";
-    dataNascimento = DateTime.parse(dataNascimentoController.text);
-    nivelSelecionado =
-        storage.getString(chaveDadosCadastraisNivelExperiencia) ?? "";
-    linguagensSelecionadas =
-        storage.getStringList(chaveDadosCadastraisLinguagens) ?? [];
-    tempoExperiencia =
-        storage.getInt(chaveDadosCadastraisTempoExperiencia) ?? 0;
-    salarioEscolhido = storage.getDouble(chaveDadosCadastraisSalario) ?? 0;
+        await storage.getDadoscadastraisDataNascimento();
+    if (dataNascimentoController.text.isNotEmpty) {
+      dataNascimento = DateTime.parse(dataNascimentoController.text);
+    }
+    nivelSelecionado = await storage.getDadoscadastraisNivelExperiencia();
+    linguagensSelecionadas = await storage.getDadoscadastraisLinguagens();
+    tempoExperiencia = await storage.getDadoscadastraisTempoExperiencia();
+    salarioEscolhido = await storage.getDadoscadastraisSalario();
     setState(() {});
   }
 
@@ -210,21 +208,16 @@ class _DadosCadastraisPageState extends State<DadosCadastraisPage> {
                         return;
                       }
 
-                      await storage.setString(
-                          chaveDadosCadastraisNome, nomeController.text);
-                      await storage.setString(
-                          chaveDadosCadastraisDataNascimento,
-                          dataNascimento.toString());
-                      await storage.setString(
-                          chaveDadosCadastraisNivelExperiencia,
-                          nivelSelecionado);
-                      await storage.setString(chaveDadosCadastraisLinguagens,
-                          linguagensSelecionadas.toString());
-                      await storage.setInt(chaveDadosCadastraisTempoExperiencia,
-                          tempoExperiencia);
-                      await storage.setDouble(
-                          chaveDadosCadastraisNivelExperiencia,
-                          salarioEscolhido);
+                      await storage.setDadosCadastraisNome(nomeController.text);
+                      await storage
+                          .setDadosCadastraisDataNascimento(dataNascimento!);
+                      await storage
+                          .setDadosCadastraisNivelExperiencia(nivelSelecionado);
+                      await storage
+                          .setDadosCadastraisLinguagens(linguagensSelecionadas);
+                      await storage
+                          .setDadosCadastraisTempoExperiencia(tempoExperiencia);
+                      await storage.setDadosCadastraisSalario(salarioEscolhido);
 
                       setState(() {
                         salvando = true;
