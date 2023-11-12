@@ -41,15 +41,11 @@ class _NumerosAleatoriosPageState extends State<NumerosAleatoriosPage> {
         alignment: Alignment.center,
         child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
           Text(
-            numeroGerado == null
-                ? "Nenhum número gerado"
-                : numeroGerado.toString(),
+            numeroGerado.toString(),
             style: const TextStyle(fontSize: 25),
           ),
           Text(
-            quantidadeClicks == null
-                ? "Nenhum clik efetuado"
-                : quantidadeClicks.toString(),
+            quantidadeClicks.toString(),
             style: const TextStyle(fontSize: 25),
           )
         ]),
