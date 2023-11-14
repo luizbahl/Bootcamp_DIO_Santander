@@ -1,40 +1,42 @@
+// ignore_for_file: unnecessary_getters_setters
+
 class ConfiguracoesModel {
   String _nomeUsuario = "";
   double _altura = 0;
-  bool _recebernotificacoes = false;
+  bool _receberNotificacoes = false;
   bool _temaEscuro = false;
 
   ConfiguracoesModel.vazio() {
     _nomeUsuario = "";
     _altura = 0;
-    _recebernotificacoes = false;
+    _receberNotificacoes = false;
     _temaEscuro = false;
   }
 
-  ConfiguracoesModel(this._nomeUsuario, this._altura, this._recebernotificacoes,
+  ConfiguracoesModel(this._nomeUsuario, this._altura, this._receberNotificacoes,
       this._temaEscuro);
 
   String get nomeUsuario => _nomeUsuario;
 
-  void set nomeUsuario(String value) {
+  set nomeUsuario(String nomeUsuario) {
     _nomeUsuario = nomeUsuario;
   }
 
   double get altura => _altura;
 
-  void set altura(double value) {
+  set altura(double altura) {
     _altura = altura;
   }
 
-  bool get recebernotificacoes => _recebernotificacoes;
+  bool get receberNotificacoes => _receberNotificacoes;
 
-  void set recebernotificacoes(bool value) {
-    _recebernotificacoes = recebernotificacoes;
+  set receberNotificacoes(bool receberNotificacoes) {
+    _receberNotificacoes = receberNotificacoes;
   }
 
   bool get temaEscuro => _temaEscuro;
 
-  void set temaEscuro(bool value) {
+  set temaEscuro(bool temaEscuro) {
     _temaEscuro = temaEscuro;
   }
 }
