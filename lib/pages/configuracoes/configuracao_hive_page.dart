@@ -2,14 +2,14 @@
 import 'package:flutter/material.dart';
 import 'package:trilhaapp/service/app_storage.dart';
 
-class ConfiguracoesPage extends StatefulWidget {
-  const ConfiguracoesPage({Key? key}) : super(key: key);
+class ConfiguracoesHivePage extends StatefulWidget {
+  const ConfiguracoesHivePage({Key? key}) : super(key: key);
 
   @override
-  State<ConfiguracoesPage> createState() => _ConfiguracoesPageState();
+  State<ConfiguracoesHivePage> createState() => _ConfiguracoesHivePageState();
 }
 
-class _ConfiguracoesPageState extends State<ConfiguracoesPage> {
+class _ConfiguracoesHivePageState extends State<ConfiguracoesHivePage> {
   AppStorageService storage = AppStorageService();
 
   TextEditingController nomeUsuarioController = TextEditingController();
@@ -39,7 +39,7 @@ class _ConfiguracoesPageState extends State<ConfiguracoesPage> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          title: const Text("Configurações"),
+          title: const Text("Configurações HIVE"),
         ),
         body: ListView(
           children: [

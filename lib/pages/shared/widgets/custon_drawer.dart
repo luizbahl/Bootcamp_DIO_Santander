@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:trilhaapp/pages/configuracao_page.dart';
+import 'package:trilhaapp/pages/configuracoes/configuracao_hive_page.dart';
 import 'package:trilhaapp/pages/dados_cadastrais.dart';
 import 'package:trilhaapp/pages/login_pages.dart';
 import 'package:trilhaapp/pages/numeros_aleatorios/numeros_aleatorios_hive_page.dart';
@@ -120,7 +120,8 @@ class CustonDrawer extends StatelessWidget {
               Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => const ConfiguracoesPage()));
+                      builder: (context) =>
+                          const ConfiguracoesHivePage()));
             },
           ),
           const Divider(),
