@@ -21,7 +21,7 @@ class ConfiguracoesRepository {
       'nomeUsuario': configuracoesModel.nomeUsuario,
       'altura': configuracoesModel.altura,
       'receberNotificacoes': configuracoesModel.receberNotificacoes,
-      'temaEscuro': configuracoesModel..temaEscuro
+      'temaEscuro': configuracoesModel.temaEscuro
     });
   }
 
@@ -31,9 +31,9 @@ class ConfiguracoesRepository {
       return ConfiguracoesModel.vazio();
     }
     return ConfiguracoesModel(
-        configuracoes['nomeUsuario'],
-        configuracoes['altura'],
-        configuracoes['receberNotificacoes'],
-        configuracoes['temaEscuro']);
+        configuracoes["nomeUsuario"],
+        configuracoes["altura"],
+        configuracoes["receberNotificacoes"],
+        configuracoes["temaEscuro"]);
   }
 }
