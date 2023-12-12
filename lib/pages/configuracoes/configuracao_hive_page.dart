@@ -1,7 +1,7 @@
 // ignore_for_file: use_build_context_synchronously
 import 'package:flutter/material.dart';
 import 'package:trilhaapp/model/configuracoes_model.dart';
-import 'package:trilhaapp/pages/repositories/configuracoes_repository.dart';
+import 'package:trilhaapp/repositories/configuracoes_repository.dart';
 
 class ConfiguracoesHivePage extends StatefulWidget {
   const ConfiguracoesHivePage({Key? key}) : super(key: key);

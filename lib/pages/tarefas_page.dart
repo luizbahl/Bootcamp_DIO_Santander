@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:trilhaapp/model/tarefa.dart';
-import 'package:trilhaapp/pages/repositories/tarefa_reposytory.dart';
+import 'package:trilhaapp/repositories/tarefa_reposytory.dart';
 
 class TarefaPage extends StatefulWidget {
   const TarefaPage({Key? key}) : super(key: key);
