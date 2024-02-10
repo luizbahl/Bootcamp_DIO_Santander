@@ -88,7 +88,7 @@ class ViaCEPModel {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     data['cep'] = _cep;
     data['logradouro'] = _logradouro;
     data['complemento'] = _complemento;
