@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
+import 'package:trilhaapp/model/viacep_model.dart';
+import 'package:trilhaapp/repositories/viacep_repository.dart';
 
 class ConsultaCepPage extends StatefulWidget {
-  const ConsultaCepPage({super.key});
+  const ConsultaCepPage({Key? key}) : super(key: key);
 
   @override
   State<ConsultaCepPage> createState() => _ConsultaCepPageState();
@@ -10,9 +11,10 @@ class ConsultaCepPage extends StatefulWidget {
 
 class _ConsultaCepPageState extends State<ConsultaCepPage> {
   var cepController = TextEditingController(text: "");
-  String endereco = "";
-  String cidade = "";
-  String estado = "";
+  bool loading = false;
+  var viacepModel = ViaCEPModel();
+  var viaCEPRepository = ViaCEPRepository();
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -28,44 +30,40 @@ class _ConsultaCepPageState extends State<ConsultaCepPage> {
             TextField(
               controller: cepController,
               keyboardType: TextInputType.number,
-              onChanged: (String value) {
+              onChanged: (String value) async {
                 var cep = value.replaceAll(RegExp(r'[^0-9]'), '');
                 if (cep.length == 8) {
-                  cidade = "Cidade";
-                  estado = "Estado";
-                  endereco = "Endereço";
-                } else {
-                  cidade = "";
-                  estado = "";
-                  endereco = "";
+                  setState(() {
+                    loading = true;
+                  });
+                  viacepModel = await viaCEPRepository.consultarCep(cep);
                 }
-                setState(() {});
+                setState(() {
+                  loading = false;
+                });
               },
             ),
             const SizedBox(
               height: 50,
             ),
             Text(
-              endereco,
+              viacepModel.logradouro ?? "",
               style: const TextStyle(fontSize: 18),
             ),
             const SizedBox(
               height: 50,
             ),
             Text(
-              "$cidade - $estado",
+              "${viacepModel.localidade ?? ""} - ${viacepModel.uf ?? ""}",
               style: const TextStyle(fontSize: 18),
             ),
+            if (loading) const CircularProgressIndicator()
           ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.add),
-        onPressed: () async {
-          var response = await http.get(Uri.parse("https://www.google.com"));
-          print(response.statusCode);
-          print(response.body);
-        },
+        onPressed: () async {},
       ),
     ));
   }
