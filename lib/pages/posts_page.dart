@@ -1,9 +1,8 @@
-// ignore_for_file: avoid_print
-
 import 'package:flutter/material.dart';
 import 'package:trilhaapp/model/post_model.dart';
 import 'package:trilhaapp/pages/comments_page.dart';
-import 'package:trilhaapp/repositories/posts_repository.dart';
+import 'package:trilhaapp/repositories/posts/impl/posts_dio_repository.dart';
+import 'package:trilhaapp/repositories/posts/posts_repository.dart';
 
 class PostsPage extends StatefulWidget {
   const PostsPage({Key? key}) : super(key: key);
@@ -13,18 +12,19 @@ class PostsPage extends StatefulWidget {
 }
 
 class _PostsPageState extends State<PostsPage> {
-  var postsRepository = PostsRepository();
+  late PostsRepository postsRepository;
   var posts = <PostModel>[];
 
   @override
   void initState() {
     super.initState();
+    postsRepository = PostsDioRepository();
     carregarDados();
   }
 
   carregarDados() async {
     posts = await postsRepository.getPosts();
-    print(posts);
+    setState(() {});
   }
 
   @override
