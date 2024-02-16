@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:trilhaapp/model/comment_model.dart';
 import 'package:trilhaapp/repositories/comments/comments_repository.dart';
 import 'package:trilhaapp/repositories/comments/impl/comments_dio_repository.dart';
-import 'package:trilhaapp/repositories/comments/impl/comments_http_repository.dart';
 
 class CommentsPage extends StatefulWidget {
   final int postId;
