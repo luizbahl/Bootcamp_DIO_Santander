@@ -75,7 +75,7 @@ class CustonDrawer extends StatelessWidget {
           ),
           const Divider(),
           const SizedBox(
-            height: 20,
+            height: 15,
           ),
           InkWell(
             child: Container(
@@ -100,7 +100,7 @@ class CustonDrawer extends StatelessWidget {
             },
           ),
           const SizedBox(
-            height: 20,
+            height: 15,
           ),
           InkWell(
             child: Container(
@@ -126,7 +126,7 @@ class CustonDrawer extends StatelessWidget {
           ),
           const Divider(),
           const SizedBox(
-            height: 20,
+            height: 15,
           ),
           InkWell(
             child: Container(
@@ -149,7 +149,29 @@ class CustonDrawer extends StatelessWidget {
             },
           ),
           const Divider(),
-          const SizedBox(height: 20),
+          const SizedBox(height: 15),
+          InkWell(
+            child: Container(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                width: double.infinity,
+                child: const Row(
+                  children: [
+                    Icon(Icons.shield_moon_outlined),
+                    SizedBox(
+                      width: 5,
+                    ),
+                    Text("Heróis"),
+                  ],
+                )),
+            onTap: () {
+              Navigator.pop(context);
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => const PostsPage()));
+            },
+          ),
+          const Divider(),
+          const SizedBox(height: 15),
           InkWell(
             child: Container(
                 padding:
@@ -182,7 +204,7 @@ class CustonDrawer extends StatelessWidget {
                                   fontSize: 25, fontWeight: FontWeight.w600),
                             ),
                             SizedBox(
-                              height: 20,
+                              height: 15,
                             ),
                             Text(
                               "O incentivo ao avanço tecnológico, assim como a revolução dos costumes prepara-nos para enfrentar situações atípicas decorrentes do sistema de participação geral.",
@@ -232,7 +254,7 @@ class CustonDrawer extends StatelessWidget {
                             style: TextStyle(fontSize: 18),
                           ),
                           SizedBox(
-                            height: 25,
+                            height: 20,
                           ),
                           Text(
                             "Deseja realmente sair do aplicativo?",
