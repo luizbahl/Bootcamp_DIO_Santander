@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:trilhaapp/pages/characters/characters_page.dart';
 import 'package:trilhaapp/pages/configuracoes/configuracao_hive_page.dart';
 import 'package:trilhaapp/pages/dados_cadastrais/dados_cadastrais_hive.dart';
 import 'package:trilhaapp/pages/login_pages.dart';
@@ -164,10 +165,10 @@ class CustonDrawer extends StatelessWidget {
                     Text("Heróis"),
                   ],
                 )),
-            onTap: () {
+            onTap: () async {
               Navigator.pop(context);
               Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => const PostsPage()));
+                MaterialPageRoute(builder: (bc) => const Characterspage()));
             },
           ),
           const Divider(),
