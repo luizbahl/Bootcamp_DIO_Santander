@@ -5,6 +5,7 @@ import 'package:trilhaapp/pages/dados_cadastrais/dados_cadastrais_hive.dart';
 import 'package:trilhaapp/pages/login_pages.dart';
 import 'package:trilhaapp/pages/numeros_aleatorios/numeros_aleatorios_hive_page.dart';
 import 'package:trilhaapp/pages/posts_page.dart';
+import 'package:trilhaapp/repositories/back4app/tarefas_back4app_repository.dart';
 
 class CustonDrawer extends StatelessWidget {
   const CustonDrawer({super.key});
@@ -12,8 +13,7 @@ class CustonDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+      child: ListView(
         children: [
           InkWell(
             onTap: () {
@@ -61,7 +61,7 @@ class CustonDrawer extends StatelessWidget {
                   children: [
                     Icon(Icons.person_2_outlined),
                     SizedBox(
-                      width: 5,
+                      width: 8,
                     ),
                     Text("Dados cadastrais"),
                   ],
@@ -75,9 +75,6 @@ class CustonDrawer extends StatelessWidget {
             },
           ),
           const Divider(),
-          const SizedBox(
-            height: 15,
-          ),
           InkWell(
             child: Container(
                 padding:
@@ -87,7 +84,7 @@ class CustonDrawer extends StatelessWidget {
                   children: [
                     Icon(Icons.add),
                     SizedBox(
-                      width: 5,
+                      width: 8,
                     ),
                     Text("Gerador de Números"),
                   ],
@@ -100,9 +97,7 @@ class CustonDrawer extends StatelessWidget {
                       builder: (bc) => const NumerosAleatoriosHivePage()));
             },
           ),
-          const SizedBox(
-            height: 15,
-          ),
+          const Divider(),
           InkWell(
             child: Container(
                 padding:
@@ -112,7 +107,7 @@ class CustonDrawer extends StatelessWidget {
                   children: [
                     Icon(Icons.info_outline_rounded),
                     SizedBox(
-                      width: 5,
+                      width: 8,
                     ),
                     Text("Configurações"),
                   ],
@@ -126,9 +121,6 @@ class CustonDrawer extends StatelessWidget {
             },
           ),
           const Divider(),
-          const SizedBox(
-            height: 15,
-          ),
           InkWell(
             child: Container(
                 padding:
@@ -150,7 +142,6 @@ class CustonDrawer extends StatelessWidget {
             },
           ),
           const Divider(),
-          const SizedBox(height: 15),
           InkWell(
             child: Container(
                 padding:
@@ -168,11 +159,55 @@ class CustonDrawer extends StatelessWidget {
             onTap: () async {
               Navigator.pop(context);
               Navigator.push(context,
-                MaterialPageRoute(builder: (bc) => const Characterspage()));
+                  MaterialPageRoute(builder: (bc) => const Characterspage()));
             },
           ),
           const Divider(),
-          const SizedBox(height: 15),
+          InkWell(
+            child: Container(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                width: double.infinity,
+                child: const Row(
+                  children: [
+                    Icon(Icons.post_add),
+                    SizedBox(
+                      width: 5,
+                    ),
+                    Text("Posts"),
+                  ],
+                )),
+            onTap: () {
+              Navigator.pop(context);
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => const PostsPage()));
+            },
+          ),
+          const Divider(),
+          InkWell(
+            child: Container(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                width: double.infinity,
+                child: const Row(
+                  children: [
+                    Icon(Icons.shield_moon_outlined),
+                    SizedBox(
+                      width: 5,
+                    ),
+                    Text("Tarefas HTTP"),
+                  ],
+                )),
+            onTap: () async {
+              var tarefa = TarefasBack4appRepository();
+              var tarefas = tarefa.obterTarefas();
+              print(tarefas);
+              Navigator.pop(context);
+              //Navigator.push(context,
+              //MaterialPageRoute(builder: (bc) => const Characterspage()));
+            },
+          ),
+          const Divider(),
           InkWell(
             child: Container(
                 padding:
@@ -205,7 +240,7 @@ class CustonDrawer extends StatelessWidget {
                                   fontSize: 25, fontWeight: FontWeight.w600),
                             ),
                             SizedBox(
-                              height: 15,
+                              height: 10,
                             ),
                             Text(
                               "O incentivo ao avanço tecnológico, assim como a revolução dos costumes prepara-nos para enfrentar situações atípicas decorrentes do sistema de participação geral.",
@@ -218,9 +253,6 @@ class CustonDrawer extends StatelessWidget {
             },
           ),
           const Divider(),
-          const SizedBox(
-            height: 10,
-          ),
           InkWell(
             child: Container(
                 padding:
@@ -255,7 +287,7 @@ class CustonDrawer extends StatelessWidget {
                             style: TextStyle(fontSize: 18),
                           ),
                           SizedBox(
-                            height: 20,
+                            height: 10,
                           ),
                           Text(
                             "Deseja realmente sair do aplicativo?",
